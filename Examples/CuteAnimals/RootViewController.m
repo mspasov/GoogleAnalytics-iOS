@@ -34,6 +34,7 @@
     self.trackedViewName = @"root";
     self.title = @"Cute Animals";
     self.delegate = [UIApplication sharedApplication].delegate;
+    [self updateSecureButton];
   }
   return self;
 }
@@ -45,9 +46,7 @@
   [super dealloc];
 }
 
-- (void)toggleSecure {
-  [GAI sharedInstance].defaultTracker.useHttps =
-      ![GAI sharedInstance].defaultTracker.useHttps;
+- (void)updateSecureButton {
   if ([GAI sharedInstance].defaultTracker.useHttps) {
     self.navigationItem.leftBarButtonItem.title = @"HTTPS";
     self.navigationItem.leftBarButtonItem.style = UIBarButtonItemStyleDone;
@@ -55,10 +54,16 @@
     self.navigationItem.leftBarButtonItem.title = @"HTTP";
     self.navigationItem.leftBarButtonItem.style = UIBarButtonItemStyleBordered;
   }
-  [[GAI sharedInstance].defaultTracker trackEventWithCategory:@"secureDispatch"
-                                                   withAction:@"toggle"
-                                                    withLabel:nil
-                                                    withValue:nil];
+}
+
+- (void)toggleSecure {
+  [GAI sharedInstance].defaultTracker.useHttps =
+      ![GAI sharedInstance].defaultTracker.useHttps;
+  [self updateSecureButton];
+  [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"secureDispatch"
+                                                  withAction:@"toggle"
+                                                   withLabel:nil
+                                                   withValue:nil];
 }
 
 - (void)crash {
@@ -102,9 +107,9 @@
   }
 
   NSString *category = [self.items objectAtIndex:indexPath.row];
-  NSString *nib =
-      ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) ?
-      @"CategoryViewController_iPhone" : @"CategoryViewController_iPad";
+  NSString *nib = ([[UIDevice currentDevice] userInterfaceIdiom] ==
+      UIUserInterfaceIdiomPhone) ? @"CategoryViewController_iPhone" :
+      @"CategoryViewController_iPad";
   CategoryViewController *categoryController =
       [[[CategoryViewController alloc] initWithNibName:nib
                                                 bundle:nil
