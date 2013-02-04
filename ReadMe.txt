@@ -1,6 +1,6 @@
-Google Analytics iOS SDK version 2.0 Beta 3
+Google Analytics iOS SDK version 2.0 Beta 4
 
-Copyright 2009 - 2012 Google, Inc. All rights reserved.
+Copyright 2009 - 2013 Google, Inc. All rights reserved.
 
 ================================================================================
 DESCRIPTION:

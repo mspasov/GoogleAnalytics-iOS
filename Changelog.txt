@@ -1,6 +1,21 @@
 Google Analytics SDK for iOS Changelog
 
 --------------------------------------------
+Version: 2.0beta4 Update (Jan 2013)
+--------------------------------------------
+* Change default appVersion to the value in CFBundleShortVersionString
+    instead of CFBundleVersionKey.
+* Use HTTPS as the default protocol instead of HTTP.
+* Track methods changed to Send (e.g. trackView now called sendView).
+* Some minor bug fixes.
+
+--------------------------------------------
+Version: 2.0beta3 iOS6 Update (Sep 2012)
+--------------------------------------------
+* Add armv7s architecture to libGoogleAnalytics.a.
+* Remove armv6 architecture from libGoogleAnalytics.a.
+
+--------------------------------------------
 Version: 2.0beta3 (Aug 2012)
 --------------------------------------------
 * Third beta release.
